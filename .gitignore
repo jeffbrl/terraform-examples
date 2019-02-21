@@ -1,6 +1,8 @@
 # ssh keys
 mykey*
 
+terraform.log
+
 # Local .terraform directories
 **/.terraform/*
 
