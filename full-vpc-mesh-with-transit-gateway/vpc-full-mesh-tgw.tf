@@ -8,7 +8,6 @@ module "vpc-one" {
 
   azs = ["ap-northeast-1a", "ap-northeast-1c"]
 
-  #  private_subnets      = ["10.1.0.0/24", "10.1.2.0/24"]
   public_subnets       = ["10.1.0.0/24", "10.1.1.0/24"]
   enable_dns_hostnames = true
   enable_dns_support   = true
@@ -63,7 +62,6 @@ resource "aws_ec2_transit_gateway" "tgw" {
 }
 
 resource "aws_ec2_transit_gateway_vpc_attachment" "vpc-one_tgw_attachment" {
-  #  subnet_ids         = ["${concat( "${module.vpc-one.private_subnets}", "${module.vpc-one.public_subnets}")}"]
   subnet_ids         = ["${module.vpc-one.public_subnets}"]
   transit_gateway_id = "${aws_ec2_transit_gateway.tgw.id}"
   vpc_id             = "${module.vpc-one.vpc_id}"
