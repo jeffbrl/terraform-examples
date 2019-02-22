@@ -86,21 +86,18 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "vpc-four_tgw_attachment" {
 }
 
 resource "aws_route" "tgw-route-one" {
-  count = 2
   route_table_id         = "${module.vpc-one.public_route_table_ids[0]}"
   destination_cidr_block = "10.0.0.0/8"
   transit_gateway_id     = "${aws_ec2_transit_gateway.tgw.id}"
 }
 
 resource "aws_route" "tgw-route-two" {
-  count = 2
   route_table_id         = "${module.vpc-two.private_route_table_ids[0]}"
   destination_cidr_block = "10.0.0.0/8"
   transit_gateway_id     = "${aws_ec2_transit_gateway.tgw.id}"
 }
 
 resource "aws_route" "tgw-route-three" {
-  count = 2
   route_table_id         = "${module.vpc-three.private_route_table_ids[0]}"
   destination_cidr_block = "10.0.0.0/8"
   transit_gateway_id     = "${aws_ec2_transit_gateway.tgw.id}"
