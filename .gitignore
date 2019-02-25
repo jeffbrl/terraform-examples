@@ -1,6 +1,9 @@
 # ssh keys
 mykey*
 
+*.swp
+*.bak
+
 terraform.log
 
 # Local .terraform directories
