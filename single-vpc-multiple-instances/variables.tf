@@ -1,5 +1,5 @@
 variable "aws_region" {
-  default = "us-east-2"
+  default = "us-east-1"
 }
 
 variable "cidr_range" {
@@ -9,7 +9,7 @@ variable "cidr_range" {
 # Note - number of AZs must match the number of public/private subnets
 
 variable "availability_zones" {
-  default = ["us-east-2a", "us-east-2b"]
+  default = ["us-east-1a", "us-east-1b"]
 }
 
 variable "public_subnets" {
@@ -21,13 +21,14 @@ variable "private_subnets" {
 }
 
 variable "public_instance_count" {
-  default = 2
+  default = 1
 }
 
 variable "private_instance_count" {
-  default = 2
+  default = 1
 }
 
 variable "enable_s3_endpoint" {
   default = true
 }
+
