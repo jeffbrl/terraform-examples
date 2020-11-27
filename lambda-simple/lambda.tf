@@ -1,6 +1,5 @@
 resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
-
+  name = "iam_for_lambda-${var.name}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -19,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_policy" "lambda_logging" {
-  name        = "lambda_logging"
+  name        = "lambda_logging-${var.name}"
   path        = "/"
   description = "IAM policy for logging from a lambda"
 
