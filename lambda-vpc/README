@@ -1,0 +1,10 @@
+This terraform demonstrates how to create a lambda function that executes in the Lambda Service VPC. This function
+will have access to the Internet but will not be able to access resources in your VPCs.
+
+If you modify lambda.py, execute "zip lambda_function.zip lambda.py". Use the zip application of your choice to update
+lambda_function.zip if using Windows.
+
+Invoke function using AWS CLI.
+
+aws lambda invoke --function-name <name> /tmp/out --log-type Tail --query 'LogResult' --output text --region <region> |  base64 -d
+
