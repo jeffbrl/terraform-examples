@@ -13,5 +13,9 @@ terraform.log
 *.tfstate
 *.tfstate.*
 
+# terragrunt files
+terraform.hcl
+backend.tf
+
 # Crash log files
 crash.log
