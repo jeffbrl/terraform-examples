@@ -2,9 +2,9 @@ resource "random_uuid" "uuid" {
 }
 
 module "vpc" {
-  version = "2.21.0"
 
   source = "terraform-aws-modules/vpc/aws"
+  version = ">=2.64.0"
 
   name = "terraform-vpc-${random_uuid.uuid.result}"
 
