@@ -1,5 +1,5 @@
 resource "aws_instance" "web_instances" {
-  ami   = data.aws_ami.amazon_linux_2.id
+  ami   = data.aws_ami.amazon_linux_2023.id
   count = 2
 
   instance_type               = "t2.micro"
