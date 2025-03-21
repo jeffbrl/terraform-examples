@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "web-lc" {
-  name            = "web launch configuration"
+  name            = "${random_string.suffix.result}-web"
   image_id        = data.aws_ami.al2023.id
   instance_type   = "t2.micro"
   security_groups = [module.vpc.default_security_group_id]
@@ -11,7 +11,7 @@ resource "aws_launch_configuration" "web-lc" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-  name                 = "webservers_asg"
+  name                 = "${random_string.suffix.result}-web"
   launch_configuration = aws_launch_configuration.web-lc.name
   vpc_zone_identifier  = module.vpc.private_subnets
   min_size             = 2
