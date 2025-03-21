@@ -1,6 +1,6 @@
 resource "aws_launch_configuration" "web-lc" {
   name            = "web launch configuration"
-  image_id        = data.aws_ami.amazon_linux_2.id
+  image_id        = data.aws_ami.al2023.id
   instance_type   = "t2.micro"
   security_groups = [module.vpc.default_security_group_id]
   user_data       = file("user-data/webserver_user_data")
