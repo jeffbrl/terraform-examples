@@ -14,7 +14,7 @@ resource "aws_launch_template" "web" {
 
 resource "aws_autoscaling_group" "asg" {
   name                 = "${random_string.suffix.result}-web"
-  launch_configuration = aws_launch_template.web.name
+  launch_template      = aws_launch_template.web.name
   vpc_zone_identifier  = module.vpc.private_subnets
   min_size             = 2
   max_size             = 3
