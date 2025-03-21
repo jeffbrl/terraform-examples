@@ -2,6 +2,7 @@
 resource "aws_launch_template" "web" {
   name          = "${random_string.suffix.result}-web"
   image_id      = data.aws_ami.al2023.id
+  instance_type = var.instance_size
 
   vpc_security_group_ids = [module.vpc.default_security_group_id]
 
@@ -24,11 +25,10 @@ resource "aws_autoscaling_group" "asg" {
 
   depends_on = [aws_lb.alb]
 
-  /*
   lifecycle {
     create_before_destroy = true
   }
-*/
+
   tag {
     key                 = "Name"
     value               = "webserver"
