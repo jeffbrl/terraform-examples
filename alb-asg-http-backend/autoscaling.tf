@@ -1,9 +1,11 @@
-resource "aws_launch_configuration" "web-lc" {
-  name            = "${random_string.suffix.result}-web"
-  image_id        = data.aws_ami.al2023.id
-  instance_type   = "t2.micro"
-  security_groups = [module.vpc.default_security_group_id]
-  user_data       = file("user-data/webserver_user_data")
+
+resource "aws_launch_template" "web" {
+  name          = "${random_string.suffix.result}-web"
+  image_id      = data.aws_ami.al2023.id
+
+  vpc_security_group_ids = [module.vpc.default_security_group_id]
+
+  user_data = base64encode(file("user-data/webserver_user_data"))
 
   lifecycle {
     create_before_destroy = true
@@ -12,7 +14,7 @@ resource "aws_launch_configuration" "web-lc" {
 
 resource "aws_autoscaling_group" "asg" {
   name                 = "${random_string.suffix.result}-web"
-  launch_configuration = aws_launch_configuration.web-lc.name
+  launch_configuration = aws_launch_template.web.name
   vpc_zone_identifier  = module.vpc.private_subnets
   min_size             = 2
   max_size             = 3
